@@ -12,27 +12,12 @@ const VideoDetails = () => {
     const { id } = useParams();
     const { setLoading } = useContext(Context);
 
-    const fetchVideoDetails = () => {
-        setLoading(true);
-        fetchDataFromApi(`video/details/?id=${id}`).then((res) => {
-            console.log(res);
-            setLoading(false);
-        });
-    };
-
-    const fetchRelatedVideos = () => {
-        setLoading(true);
-        fetchDataFromApi(`video/related-contents/?id=${id}`).then((res) => {
-            console.log(res);
-            setLoading(false);
-        });
-    };
-
+    // The fetchVideoDetails and fetchRelatedVideos functions are now moved inside the useEffect callback
     useEffect(() => {
         document.getElementById("root").classList.add("custom-h");
         fetchVideoDetails();
         fetchRelatedVideos();
-    }, [id, fetchVideoDetails, fetchRelatedVideos]);
+    }, [id]);
 
     return (
         <div className="flex justify-center flex-row h-[calc(100%-56px)] bg-black">
