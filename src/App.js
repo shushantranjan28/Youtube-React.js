@@ -7,11 +7,7 @@ import SearchResult from "./components/SearchResult";
 import VideoDetails from "./components/VideoDetails";
 import { AppContext } from "./context/contextApi";
 
-import ytLogo from "./images/yt-logo.png";
 const App = () => {
-    const isMobile = navigator.userAgentData?.brands?.some(
-        (brand) => brand.brand === "Google" && brand.version >= 68
-    );
     return (
         <AppContext>
             <BrowserRouter>

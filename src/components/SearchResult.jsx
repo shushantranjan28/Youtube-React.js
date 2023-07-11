@@ -11,11 +11,6 @@ const SearchResult = () => {
     const { searchQuery } = useParams();
     const { setLoading } = useContext(Context);
 
-    useEffect(() => {
-        document.getElementById("root").classList.remove("custom-h");
-        fetchSearchResults();
-    }, [searchQuery]);
-
     const fetchSearchResults = () => {
         setLoading(true);
         fetchDataFromApi(`search/?q=${searchQuery}`).then((res) => {
@@ -24,6 +19,11 @@ const SearchResult = () => {
             setLoading(false);
         });
     };
+
+    useEffect(() => {
+        document.getElementById("root").classList.remove("custom-h");
+        fetchSearchResults();
+    }, [searchQuery, fetchSearchResults]);
 
     return (
         <div className="flex flex-row h-[calc(100%-56px)]">
