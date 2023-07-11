@@ -3,11 +3,8 @@ import { useParams } from "react-router-dom";
 
 import { fetchDataFromApi } from "../utils/api";
 import { Context } from "../context/contextApi";
-import SuggestionVideoCard from "./SuggestionVideoCard";
 
 const VideoDetails = () => {
-    const [video, setVideo] = useState();
-    const [relatedVideos, setRelatedVideos] = useState();
     const { id } = useParams();
     const { setLoading } = useContext(Context);
 
@@ -15,7 +12,6 @@ const VideoDetails = () => {
         setLoading(true);
         fetchDataFromApi(`video/details/?id=${id}`).then((res) => {
             console.log(res);
-            setVideo(res);
             setLoading(false);
         });
     };
@@ -24,7 +20,6 @@ const VideoDetails = () => {
         setLoading(true);
         fetchDataFromApi(`video/related-contents/?id=${id}`).then((res) => {
             console.log(res);
-            setRelatedVideos(res);
             setLoading(false);
         });
     };
