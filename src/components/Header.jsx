@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import ytLogo from "../images/yt-logo.png";
-import ytLogoMobile from "../images/yt-logo-mobile.png";
 
 import { SlMenu } from "react-icons/sl";
 import { IoIosSearch } from "react-icons/io";
@@ -59,7 +58,6 @@ const Header = () => {
             src={ytLogo}
             alt="Youtube"
           />
-          <img className="h-full md:hidden" src={ytLogoMobile} alt="Youtube" />
         </Link>
       </div>
       <div className="group flex items-center">
