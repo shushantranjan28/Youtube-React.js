@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useCallback, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { AiOutlineLike } from "react-icons/ai";
@@ -12,12 +12,28 @@ const VideoDetails = () => {
     const { id } = useParams();
     const { setLoading } = useContext(Context);
 
-    // The fetchVideoDetails and fetchRelatedVideos functions are now moved inside the useEffect callback
+    // The fetchVideoDetails and fetchRelatedVideos functions are now wrapped in useCallback
+    const fetchVideoDetails = useCallback(() => {
+        setLoading(true);
+        fetchDataFromApi(`video/details/?id=${id}`).then((res) => {
+            console.log(res);
+            setLoading(false);
+        });
+    }, []);
+
+    const fetchRelatedVideos = useCallback(() => {
+        setLoading(true);
+        fetchDataFromApi(`video/related-contents/?id=${id}`).then((res) => {
+            console.log(res);
+            setLoading(false);
+        });
+    }, []);
+
     useEffect(() => {
         document.getElementById("root").classList.add("custom-h");
         fetchVideoDetails();
         fetchRelatedVideos();
-    }, [id]);
+    }, []);
 
     return (
         <div className="flex justify-center flex-row h-[calc(100%-56px)] bg-black">
